@@ -35,7 +35,7 @@ app.add_middleware(
 @app.on_event("startup")
 async def startup_event():
     logging.info("loading vectorstore")
-   """  api_key = os.environ.get("QDRANT_API_KEY")
+    """  api_key = os.environ.get("QDRANT_API_KEY")
     host = os.environ.get("QDRANT_HOST")
     global docsearch
     docsearch = Qdrant(client=QdrantClient(url=host, api_key=api_key),
