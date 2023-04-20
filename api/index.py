@@ -1,5 +1,5 @@
 """Main entrypoint for the app."""
-from langchain.embeddings.openai import OpenAIEmbeddings
+""" from langchain.embeddings.openai import OpenAIEmbeddings
 from .qa_chain import load_qa_chain
 from pydantic import BaseModel
 from dotenv import load_dotenv
@@ -7,11 +7,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from qdrant_client import QdrantClient
 from langchain.vectorstores import VectorStore, Qdrant
 from fastapi.templating import Jinja2Templates
-from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from typing import Optional
 from pathlib import Path
 import logging
-import os
+import os """
+from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 
 """ openai.log = "debug" """
 
