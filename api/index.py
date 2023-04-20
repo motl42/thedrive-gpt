@@ -53,6 +53,6 @@ async def read_root():
     "message": "Welcome to my notes application, use the /docs route to proceed"
    }
 
-@app.get("/hello")
+@app.get("/hello/")
 async def get():
     return {"question": "hello?"}
