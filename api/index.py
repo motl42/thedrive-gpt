@@ -53,6 +53,12 @@ async def post(question: Question):
     return chain({"question": question.question}) """
 
 
+@app.get("/", tags=["Root"])
+async def read_root():
+  return { 
+    "message": "Welcome to my notes application, use the /docs route to proceed"
+   }
+
 @app.get("/hello")
 async def get():
     return {"question": "hello?"}
