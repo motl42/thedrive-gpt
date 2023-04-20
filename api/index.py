@@ -50,17 +50,14 @@ class Question(BaseModel):
     question: str
 
 @app.post("/")
-async def get(question: Question):
+async def post(question: Question):
     return chain({"question": question.question})
 
 
+@app.get("/hello")
+async def get():
+    return chain({"question": "hello?"})
 
-from fastapi.responses import RedirectResponse
-from fastapi.exceptions import HTTPException
-
-@app.exception_handler(404)
-async def not_found_exception_handler(request: Request, exc: HTTPException):
-    return {"message": "leck mich am oasch"}
 
 
 if __name__ == "__main__":
