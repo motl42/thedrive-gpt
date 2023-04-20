@@ -18,7 +18,7 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 const IndexPage: NextPageWithLayout = () => {
   const askQuestion = useMutation([], async (question: string) => {
-    const res = await axios.post(process.env.NEXT_PUBLIC_API_HOST as string, {
+    const res = await axios.post(process.env.NEXT_PUBLIC_VERCEL_URL+ '/api' as string ?? 'http://localhost:9000', {
       question: question,
     });
     console.log('res', res.data);

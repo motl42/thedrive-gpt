@@ -16,7 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from pydantic import BaseModel
 
-from qa_chain import load_qa_chain
+from .qa_chain import load_qa_chain
 from langchain.embeddings.openai import OpenAIEmbeddings
 
 load_dotenv()
