@@ -54,6 +54,15 @@ async def get(question: Question):
     return chain({"question": question.question})
 
 
+
+from fastapi.responses import RedirectResponse
+from fastapi.exceptions import HTTPException
+
+@app.exception_handler(404)
+async def not_found_exception_handler(request: Request, exc: HTTPException):
+    return {"message": "leck mich am oasch"}
+
+
 if __name__ == "__main__":
     import uvicorn
 
