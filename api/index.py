@@ -13,12 +13,6 @@ from pathlib import Path
 import logging
 import os
 
-os.environ['LANGCHAIN_HANDLER'] = 'langchain'
-os.environ["LANGCHAIN_SESSION"] = "thedrive"
-
-
-load_dotenv()
-
 """ openai.log = "debug" """
 
 app = FastAPI()
