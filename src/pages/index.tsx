@@ -18,9 +18,16 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 const IndexPage: NextPageWithLayout = () => {
   const askQuestion = useMutation([], async (question: string) => {
-    const res = await axios.post(process.env.NEXT_PUBLIC_VERCEL_URL+ '/api' as string ?? 'http://localhost:9000', {
-      question: question,
-    });
+    console.log(
+      'process.env.NEXT_PUBLIC_VERCEL_URL',
+      process.env.NEXT_PUBLIC_VERCEL_URL,
+    );
+    const res = await axios.post(
+      'https://thedrive-gpt.vercel.app/api/api' ?? 'http://localhost:9000',
+      {
+        question: question,
+      },
+    );
     console.log('res', res.data);
 
     return res.data as QuestionRes;
