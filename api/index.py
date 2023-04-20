@@ -56,7 +56,7 @@ async def post(question: Question):
 
 @app.get("/hello")
 async def get():
-    return chain({"question": "hello?"})
+    return {"question": "hello?"}
 
 
 
