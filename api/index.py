@@ -23,7 +23,7 @@ load_dotenv()
 
 app = FastAPI()
 
-app.add_middleware(
+""" app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
@@ -35,13 +35,13 @@ app.add_middleware(
 @app.on_event("startup")
 async def startup_event():
     logging.info("loading vectorstore")
-    """  api_key = os.environ.get("QDRANT_API_KEY")
+     api_key = os.environ.get("QDRANT_API_KEY")
     host = os.environ.get("QDRANT_HOST")
     global docsearch
     docsearch = Qdrant(client=QdrantClient(url=host, api_key=api_key),
                        embedding_function=OpenAIEmbeddings().embed_query, collection_name="thedrive")
     global chain
-    chain = load_qa_chain(docsearch) """
+    chain = load_qa_chain(docsearch)
 
 
 class Question(BaseModel):
@@ -50,7 +50,7 @@ class Question(BaseModel):
 
 @app.post("/")
 async def post(question: Question):
-    return chain({"question": question.question})
+    return chain({"question": question.question}) """
 
 
 @app.get("/hello")
