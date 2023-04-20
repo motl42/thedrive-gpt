@@ -1,23 +1,21 @@
 """Main entrypoint for the app."""
+from langchain.embeddings.openai import OpenAIEmbeddings
+from .qa_chain import load_qa_chain
+from pydantic import BaseModel
+from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
+from qdrant_client import QdrantClient
+from langchain.vectorstores import VectorStore, Qdrant
+from fastapi.templating import Jinja2Templates
+from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
+from typing import Optional
+from pathlib import Path
+import logging
 import os
 
 os.environ['LANGCHAIN_HANDLER'] = 'langchain'
 os.environ["LANGCHAIN_SESSION"] = "thedrive"
 
-import logging
-from pathlib import Path
-from typing import Optional
-
-from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
-from fastapi.templating import Jinja2Templates
-from langchain.vectorstores import VectorStore, Qdrant
-from qdrant_client import QdrantClient
-from fastapi.middleware.cors import CORSMiddleware
-from dotenv import load_dotenv
-from pydantic import BaseModel
-
-from .qa_chain import load_qa_chain
-from langchain.embeddings.openai import OpenAIEmbeddings
 
 load_dotenv()
 
@@ -37,17 +35,18 @@ app.add_middleware(
 @app.on_event("startup")
 async def startup_event():
     logging.info("loading vectorstore")
-    api_key = os.environ.get("QDRANT_API_KEY")
+   """  api_key = os.environ.get("QDRANT_API_KEY")
     host = os.environ.get("QDRANT_HOST")
     global docsearch
-    docsearch = Qdrant(client=QdrantClient(url=host, api_key=api_key),embedding_function=OpenAIEmbeddings().embed_query, collection_name="thedrive")
+    docsearch = Qdrant(client=QdrantClient(url=host, api_key=api_key),
+                       embedding_function=OpenAIEmbeddings().embed_query, collection_name="thedrive")
     global chain
-    chain = load_qa_chain(docsearch)
-
+    chain = load_qa_chain(docsearch) """
 
 
 class Question(BaseModel):
     question: str
+
 
 @app.post("/")
 async def post(question: Question):
