@@ -2,7 +2,6 @@
 from langchain.embeddings.openai import OpenAIEmbeddings
 from .qa_chain import load_qa_chain
 from pydantic import BaseModel
-from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 from qdrant_client import QdrantClient
 from langchain.vectorstores import VectorStore, Qdrant
