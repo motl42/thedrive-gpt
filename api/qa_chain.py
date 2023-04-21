@@ -1,31 +1,18 @@
-from langchain.chains import VectorDBQAWithSourcesChain, RetrievalQAWithSourcesChain
-from langchain.llms import OpenAI
+from langchain.chains import VectorDBQAWithSourcesChain
 from langchain.chat_models.openai import ChatOpenAI
 from langchain.prompts.chat import (
     ChatPromptTemplate,
     SystemMessagePromptTemplate,
-    AIMessagePromptTemplate,
     HumanMessagePromptTemplate,
 )
-from langchain.schema import (
-    AIMessage,
-    HumanMessage,
-    SystemMessage
-)
-import json
 
 """Question-answering with sources over a vector database."""
 
 from typing import Any, Dict, List
 
-from pydantic import BaseModel, Field
-import re
+from pydantic import BaseModel
 
-from langchain.chains.combine_documents.stuff import StuffDocumentsChain
-from langchain.chains.qa_with_sources.base import BaseQAWithSourcesChain
 from langchain.docstore.document import Document
-from langchain.vectorstores.base import VectorStore
-from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 
 
 class VectorDBQAWithSentenceChain(VectorDBQAWithSourcesChain, BaseModel):
@@ -47,21 +34,12 @@ class VectorDBQAWithSentenceChain(VectorDBQAWithSourcesChain, BaseModel):
         docs, scores = self._get_docs(inputs)
         text, inputs = self.combine_documents_chain.combine_docs(docs, **inputs)
 
-        with open("input.txt", "w") as f:
-            json.dump(inputs, f)
-
         results = dict.fromkeys([key.lower() for key in self.KEYS])  # Generate the result dictionary
 
         results["answer"] = text
-        """ for key in self.KEYS:
-            match = re.search(r'' + key + ': (.+)', text)
-            if match:
-                results[key.lower()] = match.group(1) """
 
         if self.return_source_documents:
-            results["source_documents"] = [{**doc.__dict__, "score": score} for doc, score in zip(docs, scores)]    
-
-        """  results["scores"] = scores     """
+            results["source_documents"] = [{**doc.__dict__, "score": score} for doc, score in zip(docs, scores)]
 
         return results
     
@@ -107,7 +85,5 @@ def load_qa_chain(doc_store):
         vectorstore=doc_store,
         reduce_k_below_max_tokens=True,
         return_source_documents=True,
-
-        # k=6
     )
     return chain
