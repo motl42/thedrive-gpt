@@ -1,4 +1,3 @@
-fastapi
 qdrant_client
 openai
 langchain[embeddings]
