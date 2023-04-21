@@ -1,6 +1,6 @@
-openai[embeddings]
-openai[llms]
+openai
 tiktoken
+qdrant_client
 langchain[embeddings]
 langchain[vectorstores]
 langchain[chat_models]
