@@ -1,5 +1,6 @@
 qdrant_client
 openai
+tiktoken
 langchain[embeddings]
 langchain[vectorstores]
 langchain[chat_models]
