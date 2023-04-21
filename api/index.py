@@ -62,3 +62,11 @@ class Question(BaseModel):
 @app.post("/api")
 async def post(question: Question):
     return chain({"question": question.question})
+
+@app.get("/api/hello")
+async def get():
+    return {"question": "hello?"}
+
+@app.get("/api/index/hello")
+async def get():
+    return {"question": "hello?"}
