@@ -1,1 +1,6 @@
-qdrant_client
+openai
+langchain[embeddings]
+langchain[vectorstores]
+langchain[chat_models]
+langchain[prompts]
+langchain[docstore]
