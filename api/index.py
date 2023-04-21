@@ -8,8 +8,6 @@ import logging
 
 """ openai.log = "debug" """
 
-app = FastAPI()
-
 
 def init():
     if "docsearch" in globals():
