@@ -59,6 +59,6 @@ class Question(BaseModel):
     question: str
 
 
-@app.post("/api/index/question")
+@app.post("/api")
 async def post(question: Question):
     return chain({"question": question.question})
