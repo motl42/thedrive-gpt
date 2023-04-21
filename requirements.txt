@@ -1,4 +1,5 @@
-openai
+openai[embeddings]
+openai[llms]
 tiktoken
 langchain[embeddings]
 langchain[vectorstores]
