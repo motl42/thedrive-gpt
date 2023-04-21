@@ -1,2 +1,0 @@
-qdrant_client
-openai
