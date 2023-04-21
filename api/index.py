@@ -63,7 +63,7 @@ class Question(BaseModel):
 
 @app.post("/api")
 async def post(question: Question):
-    init()
+    await init()
     return chain({"question": question.question})
 
 @app.get("/api/hello")
