@@ -9,13 +9,30 @@ from langchain.vectorstores import VectorStore, Qdrant
 from fastapi.templating import Jinja2Templates
 from typing import Optional
 from pathlib import Path
-import logging
 import os """
+import logging
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 
 """ openai.log = "debug" """
 
 app = FastAPI()
+
+# add middleware which logs every request
+
+import uvicorn
+from fastapi import FastAPI, Request
+
+app = FastAPI()
+
+# define your middleware function to log request
+async def log_request(request: Request, call_next):
+    print(f"request middleware: {request.method} {request.url}")
+    response = await call_next(request)
+    return response
+
+# add the middleware to the application
+app.middleware("http")(log_request)
+
 
 """ app.add_middleware(
     CORSMiddleware,
