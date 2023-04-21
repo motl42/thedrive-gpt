@@ -43,8 +43,10 @@ app.add_middleware(
 )
 
 
-@app.on_event("startup")
-async def startup_event():
+
+async def init():
+    if "docsearch" in globals():
+        return
     logging.info("loading vectorstore")
     api_key = os.environ.get("QDRANT_API_KEY")
     host = os.environ.get("QDRANT_HOST")
@@ -61,6 +63,7 @@ class Question(BaseModel):
 
 @app.post("/api")
 async def post(question: Question):
+    init()
     return chain({"question": question.question})
 
 @app.get("/api/hello")
