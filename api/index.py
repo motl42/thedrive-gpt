@@ -24,7 +24,9 @@ app = FastAPI()
 
 # define your middleware function to log request
 async def log_request(request: Request, call_next):
-    print(f"request middleware: {request.method} {request.url}")
+    print(f"request middleware: {request.method} {request.url} {request.url.path}")
+    #print the href of the request
+
     response = await call_next(request)
     return response
 
@@ -62,12 +64,12 @@ async def post(question: Question):
     return chain({"question": question.question}) """
 
 
-@app.get("/", tags=["Root"])
+@app.get("/api", tags=["Root"])
 async def read_root():
   return { 
     "message": "Welcome to my notes application, use the /docs route to proceed"
    }
 
-@app.get("/hello/")
+@app.get("/api/hello")
 async def get():
     return {"question": "hello?"}
