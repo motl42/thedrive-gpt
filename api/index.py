@@ -18,8 +18,6 @@ from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 app = FastAPI()
 
 # add middleware which logs every request
-
-import uvicorn
 from fastapi import FastAPI, Request
 
 app = FastAPI()
