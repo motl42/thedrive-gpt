@@ -29,11 +29,16 @@ import json
  
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
+        print("seas 1")
         content_length = int(self.headers['Content-Length'])
+        print("seas 2")
         post_data = self.rfile.read(content_length)
         try:
             data = json.loads(post_data)
+
+            print("seas 3")
             init()
+            print("seas 4")
             response = chain({"question": data["question"]})
             self.send_response(200)
         except json.JSONDecodeError:
