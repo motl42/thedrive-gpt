@@ -64,11 +64,3 @@ class Question(BaseModel):
 async def post(question: Question):
     await init()
     return chain({"question": question.question})
-
-@app.get("/api/hello")
-async def get():
-    return {"question": "hello?"}
-
-@app.get("/api/index/hello")
-async def get():
-    return {"question": "hello?"}
